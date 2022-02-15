@@ -1,5 +1,25 @@
 import sqlite3
+import json
 from employee import Employee
+
+   
+# Opening JSON file
+f = open('AthenaC_setup_20Aug2021_AAA_082321_CORR___20210902130347.json',)
+   
+# returns JSON object as 
+# a dictionary
+data = json.load(f)
+   
+# Iterating through the json
+# list
+for i in data:
+    print(i)
+   
+# Closing file
+f.close()
+
+
+
 
 
 conn = sqlite3.connect('sample.db')
