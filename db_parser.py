@@ -14,10 +14,31 @@ f = open('data/AthenaC_setup_20Aug2021_AAA_082321_CORR___20210902130347.json',) 
 
 df=pd.read_json('data/AthenaC_setup_20Aug2021_AAA_082321_CORR___20210902130347.json')
 
-print(df.head(100))
-print(df.tail(100))
+#print(df.head(100))
+#print(df.tail(100))
 
-print(df['hand_id'])
+#stdf notes:
+#PIR starts each new run
+#PRR (part result record) ends each run.  it has the serial number of the device (index number that is)
+
+#print(df)
+#these are from the jupyter nb, all work to make little tables:
+MIRs = df[df["recordType"] == "MIR"]
+MIRs[["node_nam","job_nam","exec_ver","stat_num","rtst_cod","prot_cod","lot_id","flow_id","mode_cod","part_typ","setup_t","tstr_typ","exec_typ"]]
+#{"recordType":"MIR","node_nam":"D10-2","job_nam":"AthenaC_setup_20Aug2021_AAA_082321","exec_ver":"U4.2.4","stat_num":1,"rtst_cod":"N","prot_cod":" ","lot_id":"CORR","flow_id":"MainFlow_NONSec","mode_cod":" ","part_typ":"AthenaC","burn_tim":0,"setup_t":1630587827,"start_t":1630587827,"tstr_typ":"Fusion_EX","exec_typ":"Unison","cmod_cod":" "},
+PIRs = df[df["recordType"] == "PIR"]
+PIRs[['site_num','head_num']]
+
+PRRs = df[df["recordType"] == "PRR"]
+PRRs[["part_id","soft_bin","hard_bin","site_num","num_test","head_num","x_coord","y_coord","hashCode"]]
+#"recordType":"PRR","x_coord":-32768,"soft_bin":6,"part_id":"1","hard_bin":6,"site_num":1,"num_test":1,"head_num":1,"y_coord":-32768,"hashCode":-2277251},
+
+print (PRRs[["part_id","soft_bin","hard_bin","site_num","num_test","head_num","x_coord","y_coord","hashCode"]])
+
+
+
+#new_df=pd.DataFrame(2)
+#print(new_df)
 
 # Iterating through the json
 # list
